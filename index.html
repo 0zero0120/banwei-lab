@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>班味人格鉴定所 · 同人复刻</title>
+<style>
+:root{
+  --bg:#0a0a0b;
+  --panel:#111113;
+  --line:rgba(201,166,107,.20);
+  --line-strong:rgba(201,166,107,.45);
+  --gold:#c9a66b;
+  --gold-hi:#eed3a0;
+  --ink:#d8d2c6;
+  --muted:#8e887c;
+  --dim:#5c574f;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 700px at 72% -8%, rgba(80,58,28,.16) 0%, transparent 55%),
+    radial-gradient(900px 620px at 6% 108%, rgba(46,48,58,.16) 0%, transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  min-height:100vh;
+}
+::selection{background:rgba(201,166,107,.28)}
+.wrap{width:min(1180px,94vw);margin:0 auto;padding:36px 0 48px;display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;padding-top:22px}}
+
+/* ---------- 左侧 ---------- */
+.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:24px}
+@media(max-width:900px){.side{position:static}}
+.logo-card{position:relative;border:1px solid var(--line-strong);background:linear-gradient(180deg,#151210,#0e0d0c);padding:27px 20px 22px;text-align:center}
+.logo-card::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,166,107,.14);pointer-events:none}
+.logo{margin:0;font-family:var(--serif);font-weight:600;font-size:33px;letter-spacing:.16em;text-indent:.16em;background:linear-gradient(180deg,var(--gold-hi),#b8904f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-sub{margin-top:10px;font-size:9px;letter-spacing:.42em;text-indent:.42em;color:var(--muted)}
+.logo-tag{position:absolute;top:9px;right:9px;font-size:10px;color:var(--dim);border:1px solid rgba(255,255,255,.09);padding:1px 6px;letter-spacing:.18em}
+.anniv-card{border:1px solid var(--line);background:linear-gradient(180deg,#121214,#0f0f11);padding:19px 22px;text-align:center}
+.anniv-title{font-family:var(--serif);font-size:23px;letter-spacing:.3em;text-indent:.3em;color:#cfc7b8}
+.anniv-sub{margin-top:7px;font-size:9.5px;letter-spacing:.4em;text-indent:.4em;color:var(--dim)}
+.specs{border:1px solid var(--line);background:var(--panel);padding:4px 18px}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.06);font-size:13px}
+.spec-row:last-child{border-bottom:none}
+.spec-row span{color:var(--muted);letter-spacing:.12em}
+.spec-row b{font-weight:500;color:var(--ink);letter-spacing:.08em}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.ghost.wide{width:100%;border:1px solid var(--line);background:#101012;color:var(--ink);padding:12px;letter-spacing:.22em;text-indent:.22em;font-size:13px;transition:.2s}
+.ghost.wide:hover{border-color:var(--line-strong);color:var(--gold-hi)}
+.holder{margin-top:2px;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;padding:0 4px;letter-spacing:.06em}
+.heart{color:#b3574a}
+
+/* ---------- 主面板 ---------- */
+.main .panel{border:1px solid var(--line);background:linear-gradient(180deg,#121214,#0e0e10);min-height:740px;display:flex;flex-direction:column;position:relative}
+.panel::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,166,107,.07);pointer-events:none}
+.panel-head{display:flex;align-items:center;gap:8px;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;color:var(--muted);letter-spacing:.12em}
+.dot{width:7px;height:7px;border-radius:50%;background:#b3574a;box-shadow:0 0 6px rgba(179,87,74,.7);flex:0 0 auto}
+.head-right{margin-left:auto;letter-spacing:.3em;font-size:10px;color:var(--dim)}
+.panel-body{padding:30px 32px;flex:1;position:relative}
+@media(max-width:640px){.panel-body{padding:22px 18px}}
+.panel-foot{padding:12px 22px;font-size:11px;color:var(--dim);letter-spacing:.1em;border-top:1px solid rgba(255,255,255,.04);text-align:center}
+.screen-anim{animation:fadeUp .28s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* 起始屏 */
+.kicker{font-size:11px;letter-spacing:.35em;color:var(--gold)}
+.start h2{font-family:var(--serif);font-size:31px;letter-spacing:.1em;margin:14px 0 12px;color:#e3dccd;font-weight:600;line-height:1.5}
+.start .lead{color:var(--muted);line-height:1.95;font-size:14px;max-width:640px;margin:0}
+.name-row{margin:30px 0 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.name-row label{font-size:13px;color:var(--muted);letter-spacing:.16em}
+.name-input{background:#0c0c0e;border:1px solid var(--line);color:var(--ink);padding:10px 14px;font-size:14px;letter-spacing:.08em;width:220px;outline:none;font-family:inherit;transition:.2s}
+.name-input:focus{border-color:var(--line-strong)}
+.btn-primary{background:linear-gradient(180deg,#e8c98f,#c39a58);color:#171208;padding:13px 34px;font-size:14px;font-weight:600;letter-spacing:.22em;text-indent:.22em;transition:.2s}
+.btn-primary:hover{filter:brightness(1.07)}
+.btn-primary:active{transform:translateY(1px)}
+.start-note{margin-top:28px;font-size:12px;color:var(--dim);line-height:1.9}
+
+/* 答题屏 */
+.progress{height:2px;background:rgba(255,255,255,.06);margin:20px 0 28px;position:relative;overflow:hidden}
+.progress i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#8a6a3a,var(--gold-hi));width:0;transition:width .3s ease}
+.q-index{font-size:11px;color:var(--dim);letter-spacing:.32em}
+.q-text{font-family:var(--serif);font-size:22px;line-height:1.8;margin:12px 0 26px;letter-spacing:.04em;color:#e6dfd2}
+@media(max-width:640px){.q-text{font-size:19px}}
+.options{display:flex;flex-direction:column;gap:12px}
+.option{display:flex;align-items:flex-start;gap:14px;width:100%;text-align:left;border:1px solid rgba(255,255,255,.08);background:#131316;padding:15px 16px;transition:.18s;color:var(--ink)}
+.option:hover{border-color:var(--line-strong);background:#161519;transform:translateX(3px)}
+.option .letter{flex:0 0 26px;height:26px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);font-family:var(--serif)}
+.option .txt{font-size:14.5px;line-height:1.7;padding-top:2px;color:#cfc9bd}
+.quiz-foot{display:flex;align-items:center;margin-top:26px}
+.link-btn{font-size:12px;color:var(--dim);letter-spacing:.2em;padding:6px 0;transition:.2s;visibility:hidden}
+.link-btn.show{visibility:visible}
+.link-btn:hover{color:var(--gold)}
+.hint{margin-left:auto;font-size:11px;color:var(--dim);letter-spacing:.08em}
+
+/* 结果屏 */
+.result-head{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:16px}
+.result-head b{color:var(--ink);font-weight:500}
+.role-line{font-size:13px;color:var(--muted);letter-spacing:.1em;margin-bottom:14px}
+.role-line b{color:var(--gold-hi);font-size:15px;font-weight:600;letter-spacing:.15em}
+.result-card{border:1px solid var(--line-strong);background:linear-gradient(160deg,#171410 0%,#121214 62%);padding:26px;position:relative;margin-bottom:8px}
+.result-card::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,166,107,.1);pointer-events:none}
+.result-top{display:flex;gap:22px;align-items:center}
+.seal{width:82px;height:82px;border:2px solid var(--gold);position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 82px}
+.seal::before{content:"";position:absolute;inset:4px;border:1px solid rgba(201,166,107,.5)}
+.seal span{font-family:var(--serif);font-size:44px;color:var(--gold-hi);line-height:1}
+.result-name{font-family:var(--serif);font-size:37px;letter-spacing:.14em;color:#efe6d3;margin:0;font-weight:600}
+@media(max-width:640px){.result-name{font-size:29px}.seal{width:64px;height:64px;flex-basis:64px}.seal span{font-size:34px}}
+.result-tag{margin-top:9px;color:var(--muted);font-size:13.5px;letter-spacing:.12em}
+.quote-line{margin-top:22px;padding-top:18px;border-top:1px dashed rgba(201,166,107,.25);font-family:var(--serif);font-size:17px;color:var(--gold-hi);letter-spacing:.05em;line-height:1.75}
+.section{margin:26px 2px 0}
+.section h4{margin:0 0 10px;font-size:12px;letter-spacing:.32em;color:var(--gold);font-weight:500}
+.section h4::before{content:"/// ";color:rgba(201,166,107,.4);letter-spacing:0}
+.section p{margin:0;line-height:2.05;font-size:14.5px;color:#c9c3b7;text-align:justify}
+.disclaimer{font-size:11.5px;color:var(--dim);margin-top:22px;line-height:1.8}
+.actions{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:10px;margin-top:22px}
+@media(max-width:760px){.actions{grid-template-columns:1fr 1fr}}
+.btn-ghost{border:1px solid rgba(255,255,255,.1);background:#121215;color:#cfc9bd;padding:13px 8px;font-size:13px;letter-spacing:.12em;transition:.2s}
+.btn-ghost:hover{border-color:var(--line-strong);color:var(--gold-hi)}
+.actions .btn-primary{padding:13px 8px;text-indent:.12em;letter-spacing:.12em}
+
+/* 弹层 */
+.modal{position:fixed;inset:0;background:rgba(5,5,6,.74);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal.hidden{display:none}
+.modal-panel{width:min(780px,94vw);max-height:84vh;overflow:auto;border:1px solid var(--line-strong);background:#101012;padding:26px 28px;position:relative}
+.modal-title{font-family:var(--serif);letter-spacing:.25em;font-size:18px;color:var(--gold-hi);margin:0 0 18px}
+.modal-close{position:absolute;right:12px;top:10px;font-size:18px;color:var(--dim);padding:4px 10px;line-height:1}
+.modal-close:hover{color:var(--gold-hi)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:720px){.gallery-grid{grid-template-columns:1fr 1fr}}
+.g-item{border:1px solid rgba(255,255,255,.07);background:#141417;padding:13px;display:flex;gap:12px;align-items:center}
+.g-item.current{border-color:var(--line-strong);background:#181510}
+.g-seal{width:40px;height:40px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:22px;color:var(--gold-hi);flex:0 0 40px}
+.g-name{font-size:14px;color:#e0d9cb;letter-spacing:.1em}
+.g-tag{font-size:11px;color:var(--dim);margin-top:3px}
+.g-flag{font-size:10px;color:var(--gold);border:1px solid var(--line);padding:0 4px;margin-left:6px;letter-spacing:.05em}
+.record-row{display:flex;gap:14px;align-items:baseline;padding:12px 4px;border-bottom:1px dashed rgba(255,255,255,.06);font-size:13.5px}
+.record-row .r-date{color:var(--dim);font-size:12px;flex:0 0 158px}
+.record-row .r-name{color:var(--muted)}
+.record-row .r-type{margin-left:auto;color:var(--gold-hi);letter-spacing:.1em}
+.empty{color:var(--dim);font-size:13px;padding:26px 0;text-align:center;letter-spacing:.12em}
+.clear-link{display:block;margin:18px auto 0;font-size:11px;color:var(--dim);letter-spacing:.15em}
+.clear-link:hover{color:#b3574a}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="side">
+    <div class="logo-card">
+      <div class="logo-tag">同人复刻</div>
+      <h1 class="logo">班味人格鉴定所</h1>
+      <div class="logo-sub">BANWEI PERSONALITY LAB</div>
+    </div>
+    <div class="anniv-card">
+      <div class="anniv-title">班味观测局</div>
+      <div class="anniv-sub">17TH ANNIVERSARY</div>
+    </div>
+    <div class="specs">
+      <div class="spec-row"><span>关卡</span><b>17</b></div>
+      <div class="spec-row"><span>每题</span><b>A–C 三选一</b></div>
+      <div class="spec-row"><span>耗时</span><b>视作答而定</b></div>
+      <div class="spec-row"><span>记录</span><b>存于本机</b></div>
+    </div>
+    <button class="ghost wide" id="sideRecords">我的记录</button>
+    <div class="holder"><span class="heart">♥</span> 持卡人 · <span id="sideName">待登记</span></div>
+  </aside>
+  <main class="main">
+    <div class="panel">
+      <div class="panel-head"><span class="dot"></span><span id="headLeft">登记中 · 本次模式</span><span class="head-right" id="headRight">START</span></div>
+      <div class="panel-body" id="screen"></div>
+      <div class="panel-foot">同人娱乐复刻 · 与任何公司无关 · 结果仅供娱乐</div>
+    </div>
+  </main>
+</div>
+
+<div class="modal hidden" id="modal">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<canvas id="shareCanvas" class="hidden"></canvas>
+
+<script>
+"use strict";
+
+/* ---------------- 人格数据 ---------------- */
+const TYPES = {
+  ddl: {
+    name: "DDL 战士", seal: "燃",
+    tagline: "死线一响，血脉觉醒",
+    quote: "「给我一个截止日期，还你一个奇迹。」",
+    file: "任务刚下发时你像一位与世无争的旁观者，进度条纹丝不动；日期一逼近，你突然进入超导状态，手指翻飞、思路通透，好像前面那些天都在为这一刻蓄能。不是拖延，是你的发动机只有一种点火方式。",
+    art: "极限冲刺。越到最后关头越冷静，多线并行也不乱，爆发的时候你一个人就是一支队伍。",
+    bill: "肾上腺素是借来的高利贷，睡眠是第一个被抵押的东西。第二天顶着黑眼圈解释「我其实想了很久」，你自己都差点信了。"
+  },
+  mor: {
+    name: "早八永动机", seal: "启",
+    tagline: "一杯咖啡，通关一整天",
+    quote: "「别人靠意志力，我靠生物钟。」",
+    file: "你是办公室里的晨间奇迹：八点整坐下，九点前已经干完别人一上午的量。咖啡只是仪式感，不是救命稻草，你的一天从清晨就已经领先半圈。",
+    art: "早场爆发。脑子最清醒的两小时全留给了硬活，等别人下午开始犯困，你的结果已经晾在群里了。",
+    bill: "晚上九点电量只剩一格，任何「晚上再说」的约定都接近失约。朋友以为你在敷衍，其实你只是真的困了。"
+  },
+  div: {
+    name: "会议潜水员", seal: "潜",
+    tagline: "全程静音，一句致命",
+    quote: "「会开完了吧？那我来说结论。」",
+    file: "一小时的会议，你发言不超过三十秒，但这三十秒往往决定后面三小时的方向。别人在争谁对谁错，你在等大家说累。",
+    art: "观察与总结。你能从嘈杂里捞出真正的分歧点，一句话把跑偏的会拉回正轨。",
+    bill: "沉默常被误读成没想法。到了述职那天，你要花双倍力气让大家想起：那些关键的一句，其实都是我说的。"
+  },
+  tab: {
+    name: "表格美学家", seal: "齐",
+    tagline: "对齐，是最低限度的体面",
+    quote: "「数据可以难看，但不能不齐。」",
+    file: "你的文件命名像军训，表格行高统一、字号克制、配色不超过三种。别人说你强迫症，你觉得那是职业尊严。",
+    art: "结构化。再乱的信息到你的手里都会变成一张能跑的表，老板要什么口径，你三秒能筛出来。",
+    bill: "你能为一个像素的偏差折腾半小时，却常在「大方向」上被催得手忙脚乱。精致是你的护城河，也是你的进度条。"
+  },
+  guo: {
+    name: "接锅侠", seal: "揽",
+    tagline: "有锅我背，有事我在",
+    quote: "「放那儿吧，我来。」",
+    file: "你是团队里永远在线的那个人。别人犹豫的活你顺手就接，别人搞砸的事你二话不说补上，连你自己都记不清今年替几个人救过火。",
+    art: "托底。哪里漏风你就出现在哪里，项目有你在，大家睡觉都能踏实一点。",
+    bill: "善良没有 KPI，锅却有重量。你的好说话正在被默认为理所当然，学会说「不」是你欠自己的那一句。"
+  },
+  bnd: {
+    name: "边界感大师", seal: "界",
+    tagline: "下班即失联，明早再营业",
+    quote: "「工作是为了生活，别搞反了。」",
+    file: "你对上班投入，对下班更投入。六点一到，电脑合盖、群消息免打扰，世界瞬间安静。这不是躺平，是你把「自己」也列进了每日待办。",
+    art: "续航。你不追求某一晚的英雄主义，靠的是长年稳定的出勤和始终清醒的脑子。",
+    bill: "紧急时刻大家会习惯性跳过你，机会也是。你不是不知道，只是你算过了：用睡眠换来的表现，性价比并不高。"
+  },
+  std: {
+    name: "情绪稳定器", seal: "定",
+    tagline: "天塌下来，先喝口水",
+    quote: "「慌不能加快进度，但会加快衰老。」",
+    file: "上线炸了、需求翻了、老板急了，你是全屋唯一一个语速不变的人。先把水烧上，再把问题拆开，一件一件灭。",
+    art: "危机现场的主心骨。你的镇定会传染，团队一看到你，就知道事情还兜得住。",
+    bill: "稳定久了，别人默认你不需要被关心。你收下了所有人的情绪，却很少找到地方放自己的那一份。"
+  },
+  vib: {
+    name: "气氛组长", seal: "嗨",
+    tagline: "冷场？不存在的",
+    quote: "「先把人处熟，活儿自然好干。」",
+    file: "你是工位区的温度计，也是团建的发动机。再陌生的会议室，只要你在，三句话就能把大家拧成一个群。",
+    art: "破冰与粘合。跨部门之间那堵墙在你面前自动矮半截，很多难题是在饭桌上被你顺手解决的。",
+    bill: "在热闹里耗掉的电量，只有你自己知道。关上门的那一刻，你可以一整个周末不说话。"
+  },
+  fis: {
+    name: "摸鱼哲学家", seal: "闲",
+    tagline: "人在工位，魂在旷野",
+    quote: "「摸鱼不是偷懒，是给灵魂透气。」",
+    file: "你的浏览器永远留着几个与工作无关的标签页，你的表情看起来在深思，其实可能在想晚饭。但神奇的是，你交出来的东西总不太差。",
+    art: "节能与顿悟。你用最少的动作维持产出，还会在某个走神的瞬间突然想到所有人都没想过的点子。",
+    bill: "关键时刻的「认真模式」需要启动时间，而这世界越来越不给热身的机会。松弛很珍贵，但要学会收放自如。"
+  },
+  fix: {
+    name: "万能补位王", seal: "补",
+    tagline: "哪里缺人，哪里就有我",
+    quote: "「我可以不会，但我可以现在会。」",
+    file: "前端缺人你顶前端，策划缺文案你顺手写，连打印机坏了都是你修的。你不是专业最深的那个，但一定是项目最离不开的那个。",
+    art: "快速学习与补位。什么坑都能填，什么新工具到你手里，三天就能用。",
+    bill: "样样通，也容易被当成样样松。你的名字很少出现在功劳簿第一行，却总在救火名单第一行。"
+  },
+  trn: {
+    name: "甲方翻译官", seal: "译",
+    tagline: "把「感觉不对」翻译成需求",
+    quote: "「他要的不是这个，但他不知道自己不要什么。」",
+    file: "别人听到「再高级一点」会崩溃，你只会点点头，然后递上一版他真正想要的。你的耳朵能自动过滤情绪，只留下信息。",
+    art: "对齐与共情。需求在你手里不再是玄学，复杂的多方诉求会被你翻译成人话和方案。",
+    bill: "你花了太多时间理解别人，偶尔会忘记问一句：那我自己想要什么？哄好了全世界，别把自己落下了。"
+  },
+  det: {
+    name: "细节警察", seal: "察",
+    tagline: "一个错别字都不能活着下班",
+    quote: "「魔鬼藏在细节里，我就是捉鬼的。」",
+    file: "全角半角、中英文空格、标点对齐，在你眼里都写着「已发现」。你交出去的东西别人挑不出毛病，只能挑挑你的态度。",
+    art: "质检。你的眼睛胜过一版测试用例，很多事故在发生之前就已经被你拦下。",
+    bill: "高标准让你可靠，也让你疲惫。你对自己比对别人更狠，一次小小的疏忽会让你内耗一整天。"
+  }
+};
+const TYPE_ORDER = ["ddl","mor","div","tab","guo","bnd","std","vib","fis","fix","trn","det"];
+
+/* ---------------- 题目 ---------------- */
+const QUESTIONS = [
+  { q: "早上 9:00 坐下，你打开电脑的第一件事是——", opts: [
+    { t: "先列今日清单，从最难的那件啃起", p: "tab", s: "det" },
+    { t: "冲一杯咖啡，和陆续到岗的同事打个照面", p: "mor", s: "vib" },
+    { t: "发几分钟呆，等灵魂追上身体", p: "fis", s: "div" }
+  ]},
+  { q: "群里弹出通知：「这个需求今晚就要。」你的第一反应——", opts: [
+    { t: "心跳一下子上来了，来都来了，干吧", p: "ddl", s: "vib" },
+    { t: "先问清楚范围，能砍的先砍掉", p: "trn", s: "std" },
+    { t: "迅速拆活，拉上能帮忙的人一起兜", p: "fix", s: "ddl" }
+  ]},
+  { q: "一场预计半小时、实际开了两小时的会上，你通常——", opts: [
+    { t: "全程安静，散会前说一句定调的话", p: "div", s: "std" },
+    { t: "主动把话题拉回正轨，顺便救几个冷场", p: "vib", s: "trn" },
+    { t: "低头记录，把每一条待办都标上负责人", p: "tab", s: "det" }
+  ]},
+  { q: "同事一脸为难地把一件「其实不归你」的活推过来——", opts: [
+    { t: "先接了再说，反正你能干", p: "guo", s: "fix" },
+    { t: "微笑着指路：这事应该找谁", p: "bnd", s: "div" },
+    { t: "先分析这件事为什么会漏到你手里", p: "det", s: "std" }
+  ]},
+  { q: "下班前十分钟，老板发来一句「在吗？」", opts: [
+    { t: "看到了，明早再回", p: "bnd", s: "std" },
+    { t: "秒回「在」，顺手把事办了", p: "guo", s: "mor" },
+    { t: "先问清楚是什么事、急不急", p: "std", s: "div" }
+  ]},
+  { q: "你的工位 / 桌面更接近——", opts: [
+    { t: "一切归位，文件夹按项目首字母排好", p: "tab", s: "det" },
+    { t: "咖啡杯环绕，但每样东西我都知道在哪", p: "mor", s: "vib" },
+    { t: "便签贴成一片草原，混乱但生机勃勃", p: "fis", s: "ddl" }
+  ]},
+  { q: "团建饭桌上气氛突然冷了下来——", opts: [
+    { t: "现挂一个梗，把场子救回来", p: "vib", s: "mor" },
+    { t: "安静夹菜，等话题自己回暖", p: "div", s: "det" },
+    { t: "悄悄开启一个所有人都能聊的话题", p: "std", s: "trn" }
+  ]},
+  { q: "交件前一分钟，你发现一个不起眼的错别字——", opts: [
+    { t: "必须改，晚一分钟也要改", p: "det", s: "tab" },
+    { t: "先交，回头想起来了再说", p: "ddl", s: "fis" },
+    { t: "改完顺手全局搜一遍同类问题", p: "fix", s: "std" }
+  ]},
+  { q: "午休时间，你最喜欢——", opts: [
+    { t: "一个人走走或趴一会儿，谁也别找我", p: "bnd", s: "div" },
+    { t: "和同事拼饭，边吃边聊最近的八卦", p: "vib", s: "guo" },
+    { t: "戴上耳机，进入自己的小世界", p: "fis", s: "std" }
+  ]},
+  { q: "接到一个完全陌生的需求时，你首先——", opts: [
+    { t: "追问背景：我们到底要解决谁的什么问题", p: "trn", s: "std" },
+    { t: "直接上手试，边做边学最快", p: "fix", s: "ddl" },
+    { t: "翻历史案例和文档，先找参照", p: "det", s: "tab" }
+  ]},
+  { q: "凌晨一点，项目只差最后一步——", opts: [
+    { t: "这正是我的主场，越晚越精神", p: "ddl", s: "fis" },
+    { t: "这个点我早就干完了，应该在睡觉", p: "mor", s: "tab" },
+    { t: "关机，明天早起一小时效率更高", p: "bnd", s: "std" }
+  ]},
+  { q: "同事夸你「靠谱」，你觉得自己靠谱在——", opts: [
+    { t: "情绪稳定，天塌下来也照常推进", p: "std", s: "div" },
+    { t: "什么都能接，什么都能顶", p: "fix", s: "guo" },
+    { t: "细节零失误，交给我就是放心", p: "det", s: "tab" }
+  ]},
+  { q: "隔壁工位的小伙伴卡住了一下午——", opts: [
+    { t: "主动凑过去：我教你一个笨办法", p: "guo", s: "trn" },
+    { t: "不主动打扰，等他开口再帮", p: "bnd", s: "div" },
+    { t: "干脆把他的那一块也一起干完", p: "fix", s: "ddl" }
+  ]},
+  { q: "上班时你最常出现的表情是——", opts: [
+    { t: "面无表情，但脑内在飞速算进度", p: "div", s: "det" },
+    { t: "嘴角带笑，随时准备接一句梗", p: "vib", s: "mor" },
+    { t: "微微皱眉，盯着屏幕上那个不对劲的像素", p: "det", s: "tab" }
+  ]},
+  { q: "项目上线前夜，同事问你要不要通宵——", opts: [
+    { t: "通！没有截止日期的我，是没有灵魂的", p: "ddl", s: "vib" },
+    { t: "不了，早点睡，清早起来效率最高", p: "mor", s: "std" },
+    { t: "看情况，先把手头这版做扎实", p: "std", s: "fix" }
+  ]},
+  { q: "你的沟通风格更像——", opts: [
+    { t: "能一句话说完，绝不说三句", p: "div", s: "tab" },
+    { t: "先共情，再谈事，最后给方案", p: "trn", s: "std" },
+    { t: "有事说事，下班不谈，简单清爽", p: "bnd", s: "det" }
+  ]},
+  { q: "如果用一张图代表你的「班味」——", opts: [
+    { t: "冷掉的咖啡和满屏还没跑的代码", p: "ddl", s: "mor" },
+    { t: "窗外的夕阳和准时关机的背影", p: "bnd", s: "vib" },
+    { t: "一张标红到看不见原图的文档", p: "fix", s: "det" }
+  ]}
+];
+
+/* ---------------- 状态与存储 ---------------- */
+const KEY_RECORDS = "banwei_lab_records_v1";
+const KEY_NAME = "banwei_lab_name_v1";
+
+const state = { idx: 0, answers: [], name: "无名打工人", lastType: null };
+
+const $ = (id) => document.getElementById(id);
+const screenEl = $("screen");
+const headLeft = $("headLeft");
+const headRight = $("headRight");
+let currentScreen = "start";
+
+function storeGet(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch (e) { return fallback; }
+}
+function storeSet(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+}
+function loadName() {
+  const n = storeGet(KEY_NAME, "");
+  state.name = (typeof n === "string" && n.trim()) ? n.trim() : "无名打工人";
+}
+function loadRecords() {
+  const r = storeGet(KEY_RECORDS, []);
+  return Array.isArray(r) ? r : [];
+}
+function pushRecord(typeId) {
+  const list = loadRecords();
+  const now = new Date();
+  list.unshift({
+    t: now.toISOString(),
+    name: state.name,
+    type: typeId,
+    mode: "标准模式"
+  });
+  storeSet(KEY_RECORDS, list.slice(0, 60));
+}
+function fmtDate(iso) {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  const p = (x) => String(x).padStart(2, "0");
+  return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+/* ---------------- 计分 ---------------- */
+function computeResult() {
+  const score = {};
+  TYPE_ORDER.forEach(k => score[k] = 0);
+  state.answers.forEach(a => {
+    const o = QUESTIONS[a.qi].opts[a.oi];
+    score[o.p] += 3;
+    score[o.s] += 1;
+  });
+  const last = state.answers.length ? QUESTIONS[state.answers[state.answers.length - 1].qi].opts[state.answers[state.answers.length - 1].oi] : null;
+  const cand = TYPE_ORDER.map((k, i) => ({
+    k, i, s: score[k],
+    w: last ? (last.p === k ? 2 : (last.s === k ? 1 : 0)) : 0
+  }));
+  cand.sort((a, b) => b.s - a.s || b.w - a.w || a.i - b.i);
+  return cand[0].k;
+}
+
+/* ---------------- 渲染 ---------------- */
+function setHead(left, right) { headLeft.textContent = left; headRight.textContent = right; }
+function updateSideName() { $("sideName").textContent = state.name || "待登记"; }
+
+function renderStart() {
+  currentScreen = "start";
+  setHead("登记中 · 本次模式", "START");
+  updateSideName();
+  screenEl.innerHTML = `
+    <div class="start screen-anim">
+      <div class="kicker">PERSONALITY CHECK · NO.17</div>
+      <h2>你身上的班味，<br>是哪一种配方？</h2>
+      <p class="lead">17 个职场情境，每题三个选项。凭第一直觉作答，不要想「应该选哪个」，选「实际会那么做」的那个。最后会给你一张专属班味人格卡。</p>
+      <div class="name-row">
+        <label for="nameInput">持卡人</label>
+        <input class="name-input" id="nameInput" maxlength="12" placeholder="你的名字（最多12字）" value="${escapeAttr(state.name === "无名打工人" ? "" : state.name)}">
+        <button class="btn-primary" id="btnStart">开始鉴定</button>
+      </div>
+      <div class="start-note">· 结果只反映这 17 次选择的相对倾向，没选中的样子，可能也是你。<br>· 所有记录只保存在这台电脑的浏览器里，不会上传任何地方。</div>
+    </div>`;
+  $("btnStart").addEventListener("click", () => {
+    const v = $("nameInput").value.trim();
+    state.name = v || "无名打工人";
+    storeSet(KEY_NAME, state.name === "无名打工人" ? "" : state.name);
+    updateSideName();
+    startQuiz();
+  });
+  $("nameInput").addEventListener("keydown", (e) => { if (e.key === "Enter") $("btnStart").click(); });
+}
+function escapeAttr(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
+
+function startQuiz() {
+  state.idx = 0;
+  state.answers = [];
+  renderQuestion();
+}
+
+function renderQuestion() {
+  currentScreen = "quiz";
+  const i = state.idx;
+  const q = QUESTIONS[i];
+  setHead(`鉴定中 · 第 ${i + 1} 关`, `${i + 1} / ${QUESTIONS.length}`);
+  screenEl.innerHTML = `
+    <div class="quiz screen-anim">
+      <div class="q-index">QUESTION ${String(i + 1).padStart(2, "0")}</div>
+      <div class="progress"><i id="progBar"></i></div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">
+        ${q.opts.map((o, oi) => `
+          <button class="option" data-oi="${oi}">
+            <span class="letter">${"ABC"[oi]}</span>
+            <span class="txt">${o.t}</span>
+          </button>`).join("")}
+      </div>
+      <div class="quiz-foot">
+        <button class="link-btn ${i > 0 ? "show" : ""}" id="btnPrev">← 上一关</button>
+        <span class="hint">按 A / B / C 或 1 / 2 / 3 快速作答</span>
+      </div>
+    </div>`;
+  $("progBar").style.width = `${(i / QUESTIONS.length) * 100}%`;
+  screenEl.querySelectorAll(".option").forEach(btn => {
+    btn.addEventListener("click", () => chooseOption(parseInt(btn.dataset.oi, 10)));
+  });
+  const prev = $("btnPrev");
+  if (prev) prev.addEventListener("click", () => {
+    if (state.idx > 0) { state.idx--; state.answers.pop(); renderQuestion(); }
+  });
+}
+
+function chooseOption(oi) {
+  if (currentScreen !== "quiz") return;
+  state.answers.push({ qi: state.idx, oi });
+  state.idx++;
+  if (state.idx >= QUESTIONS.length) {
+    finishQuiz();
+  } else {
+    renderQuestion();
+  }
+}
+
+function finishQuiz() {
+  const typeId = computeResult();
+  state.lastType = typeId;
+  pushRecord(typeId);
+  renderResult();
+}
+
+function renderResult() {
+  currentScreen = "result";
+  const t = TYPES[state.lastType];
+  setHead("鉴定完毕 · 本次模式", "RESULT");
+  updateSideName();
+  screenEl.innerHTML = `
+    <div class="result screen-anim">
+      <div class="result-head"><span>♥ 鉴定人 &nbsp;<b>${escapeHtml(state.name)}</b></span><span>标准模式</span></div>
+      <div class="role-line">本次角色：<b>${t.name}</b></div>
+      <div class="result-card">
+        <div class="result-top">
+          <div class="seal"><span>${t.seal}</span></div>
+          <div>
+            <h3 class="result-name">${t.name}</h3>
+            <div class="result-tag">${t.tagline}</div>
+          </div>
+        </div>
+        <div class="quote-line">${t.quote}</div>
+      </div>
+
+      <div class="section"><h4>角色档案</h4><p>${t.file}</p></div>
+      <div class="section"><h4>你的拿手戏</h4><p>${t.art}</p></div>
+      <div class="section"><h4>你的扎心账单</h4><p>${t.bill}</p></div>
+
+      <div class="disclaimer">结果只反映本次三选一的相对选择，未选中的行为也可能符合你。</div>
+
+      <div class="actions">
+        <button class="btn-primary" id="btnShare">生成分享卡</button>
+        <button class="btn-ghost" id="btnCopy">复制文案</button>
+        <button class="btn-ghost" id="btnGallery">人格图鉴</button>
+        <button class="btn-ghost" id="btnRecords">我的记录</button>
+      </div>
+      <div class="actions" style="grid-template-columns:1fr;margin-top:10px">
+        <button class="btn-ghost" id="btnRetry">重新鉴定</button>
+      </div>
+    </div>`;
+  $("btnShare").addEventListener("click", drawShareCard);
+  $("btnCopy").addEventListener("click", copyResultText);
+  $("btnGallery").addEventListener("click", () => openGallery(state.lastType));
+  $("btnRecords").addEventListener("click", openRecords);
+  $("btnRetry").addEventListener("click", renderStart);
+}
+function escapeHtml(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+/* ---------------- 弹层 ---------------- */
+const modal = $("modal");
+function openModal(html) {
+  $("modalBody").innerHTML = html;
+  modal.classList.remove("hidden");
+}
+function closeModal() { modal.classList.add("hidden"); }
+$("modalClose").addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+function openGallery(currentType) {
+  const items = TYPE_ORDER.map(k => {
+    const t = TYPES[k];
+    const cur = k === currentType;
+    return `<div class="g-item ${cur ? "current" : ""}">
+      <div class="g-seal">${t.seal}</div>
+      <div>
+        <div class="g-name">${t.name}${cur ? '<span class="g-flag">本次</span>' : ""}</div>
+        <div class="g-tag">${t.tagline}</div>
+      </div>
+    </div>`;
+  }).join("");
+  openModal(`<h3 class="modal-title">人格图鉴 · 共 ${TYPE_ORDER.length} 种</h3><div class="gallery-grid">${items}</div>`);
+}
+
+function openRecords() {
+  const list = loadRecords();
+  let body;
+  if (!list.length) {
+    body = `<div class="empty">暂无记录 —— 完成一次鉴定，这里就会记上一笔。</div>`;
+  } else {
+    body = list.map(r => {
+      const t = TYPES[r.type] || { name: "未知人格" };
+      return `<div class="record-row">
+        <span class="r-date">${fmtDate(r.t)}</span>
+        <span class="r-name">${escapeHtml(r.name || "无名打工人")}</span>
+        <span class="r-type">${t.name}</span>
+      </div>`;
+    }).join("") + `<button class="clear-link" id="btnClearRecords">清空所有记录</button>`;
+  }
+  openModal(`<h3 class="modal-title">我的记录</h3>${body}`);
+  const clr = $("btnClearRecords");
+  if (clr) clr.addEventListener("click", () => {
+    if (confirm("确定清空本机保存的所有鉴定记录？")) {
+      storeSet(KEY_RECORDS, []);
+      openRecords();
+    }
+  });
+}
+$("sideRecords").addEventListener("click", openRecords);
+
+/* ---------------- 复制文案 ---------------- */
+function copyResultText() {
+  const t = TYPES[state.lastType];
+  const d = new Date();
+  const p = (x) => String(x).padStart(2, "0");
+  const text = `【班味人格鉴定所】\n本次角色：${t.name} —— ${t.tagline}\n${t.quote}\n持卡人：${state.name} · ${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}\n（同人复刻版，仅供娱乐）`;
+  const done = () => {
+    const btn = $("btnCopy");
+    if (!btn) return;
+    const old = btn.textContent;
+    btn.textContent = "已复制 ✓";
+    setTimeout(() => { btn.textContent = old; }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+/* ---------------- 分享卡 ---------------- */
+function drawShareCard() {
+  const t = TYPES[state.lastType];
+  const W = 750, H = 1180, DPR = 2;
+  const cv = $("shareCanvas");
+  cv.width = W * DPR; cv.height = H * DPR;
+  const ctx = cv.getContext("2d");
+  ctx.scale(DPR, DPR);
+
+  const serif = '"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif';
+  const sans = '"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif';
+
+  // 背景
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#141210");
+  bg.addColorStop(0.55, "#0d0d0f");
+  bg.addColorStop(1, "#0a0a0b");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+  const glow = ctx.createRadialGradient(W / 2, 240, 40, W / 2, 240, 560);
+  glow.addColorStop(0, "rgba(96,68,32,0.22)");
+  glow.addColorStop(1, "rgba(96,68,32,0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+
+  // 双线边框
+  ctx.strokeStyle = "#c9a66b";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(40, 40, W - 80, H - 80);
+  ctx.strokeStyle = "rgba(201,166,107,0.35)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(52, 52, W - 104, H - 104);
+
+  ctx.textAlign = "center";
+
+  // 页眉
+  ctx.fillStyle = "#8e887c";
+  ctx.font = `20px ${sans}`;
+  letterSpaced(ctx, "BANWEI PERSONALITY LAB", W / 2, 112, 6);
+  ctx.fillStyle = "#cfc7b8";
+  ctx.font = `22px ${serif}`;
+  letterSpaced(ctx, "班味人格鉴定所", W / 2, 152, 6);
+  ctx.fillStyle = "#5c574f";
+  ctx.font = `15px ${sans}`;
+  letterSpaced(ctx, "同人复刻 · 17TH ANNIVERSARY SPECIAL", W / 2, 186, 3);
+
+  // 印章
+  const sx = W / 2 - 56, sy = 236, ss = 112;
+  ctx.strokeStyle = "#c9a66b";
+  ctx.lineWidth = 3;
+  ctx.strokeRect(sx, sy, ss, ss);
+  ctx.strokeStyle = "rgba(201,166,107,0.5)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(sx + 7, sy + 7, ss - 14, ss - 14);
+  ctx.fillStyle = "#eed3a0";
+  ctx.font = `64px ${serif}`;
+  ctx.textBaseline = "middle";
+  ctx.fillText(t.seal, W / 2, sy + ss / 2 + 4);
+  ctx.textBaseline = "alphabetic";
+
+  // 角色名
+  ctx.fillStyle = "#8e887c";
+  ctx.font = `16px ${sans}`;
+  letterSpaced(ctx, "本 次 角 色", W / 2, 406, 4);
+
+  const nameGrad = ctx.createLinearGradient(0, 420, 0, 480);
+  nameGrad.addColorStop(0, "#f0d9a6");
+  nameGrad.addColorStop(1, "#c39a58");
+  ctx.fillStyle = nameGrad;
+  ctx.font = `bold 58px ${serif}`;
+  letterSpaced(ctx, t.name, W / 2, 474, 8);
+
+  ctx.fillStyle = "#a49d90";
+  ctx.font = `22px ${sans}`;
+  letterSpaced(ctx, t.tagline, W / 2, 522, 2);
+
+  // 分隔
+  ctx.strokeStyle = "rgba(201,166,107,0.3)";
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(130, 566); ctx.lineTo(W - 130, 566); ctx.stroke();
+
+  // 金句
+  ctx.fillStyle = "#eed3a0";
+  ctx.font = `26px ${serif}`;
+  const quote = t.quote.replace(/^「|」$/g, "");
+  wrapText(ctx, `「${quote}」`, W / 2, 620, 560, 44);
+
+  // 档案摘要
+  ctx.fillStyle = "#8e887c";
+  ctx.font = `15px ${sans}`;
+  letterSpaced(ctx, "V I B E S U M M A R Y", W / 2, 742, 4);
+  ctx.fillStyle = "#bcb5a8";
+  ctx.font = `19px ${sans}`;
+  const summary = wrapText(ctx, t.bill, W / 2, 780, 540, 34);
+  let y = 780 + (summary - 1) * 34 + 58;
+
+  // 底部信息
+  const d = new Date();
+  const p = (x) => String(x).padStart(2, "0");
+  ctx.strokeStyle = "rgba(255,255,255,0.08)";
+  ctx.beginPath(); ctx.moveTo(130, y - 26); ctx.lineTo(W - 130, y - 26); ctx.stroke();
+
+  ctx.fillStyle = "#8e887c";
+  ctx.font = `18px ${sans}`;
+  ctx.fillText(`持卡人 · ${state.name}`, W / 2, y + 6);
+  ctx.fillStyle = "#5c574f";
+  ctx.font = `16px ${sans}`;
+  ctx.fillText(`${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())} · 结果仅供娱乐`, W / 2, y + 40);
+  ctx.fillText("班味人格鉴定所 · 同人复刻版", W / 2, H - 74);
+
+  // 下载
+  const a = document.createElement("a");
+  a.download = `班味人格_${t.name.replace(/\s+/g, "")}_${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}.png`;
+  a.href = cv.toDataURL("image/png");
+  a.click();
+}
+function letterSpaced(ctx, text, x, y, gap) {
+  const chars = [...text];
+  const widths = chars.map(c => ctx.measureText(c).width);
+  const total = widths.reduce((a, b) => a + b, 0) + gap * (chars.length - 1);
+  let cx = x - total / 2;
+  chars.forEach((c, i) => {
+    ctx.fillText(c, cx, y);
+    cx += widths[i] + gap;
+  });
+}
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const chars = [...text];
+  let line = "";
+  let lines = 0;
+  for (const ch of chars) {
+    const test = line + ch;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      ctx.fillText(line, x, y + lines * lineHeight);
+      lines++;
+      line = ch;
+    } else {
+      line = test;
+    }
+  }
+  if (line) { ctx.fillText(line, x, y + lines * lineHeight); lines++; }
+  return lines;
+}
+
+/* ---------------- 键盘 ---------------- */
+document.addEventListener("keydown", (e) => {
+  if (currentScreen !== "quiz") return;
+  if (modal.classList.contains("hidden") === false) return;
+  if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+  const map = { a: 0, b: 1, c: 2, "1": 0, "2": 1, "3": 2 };
+  const k = e.key.toLowerCase();
+  if (k in map) chooseOption(map[k]);
+  else if (e.key === "Backspace") {
+    e.preventDefault();
+    if (state.idx > 0) { state.idx--; state.answers.pop(); renderQuestion(); }
+  }
+});
+
+/* ---------------- 启动 ---------------- */
+loadName();
+updateSideName();
+renderStart();
+</script>
+</body>
+</html>
